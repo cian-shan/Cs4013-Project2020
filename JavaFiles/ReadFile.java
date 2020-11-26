@@ -9,11 +9,18 @@ public class ReadFile {
     	Scanner scan = new Scanner(new File("JavaFiles/Properties.csv"));
     	ArrayList<String[]> properties = new ArrayList<String[]>();
     	String[] property = new String[2];
+    	String owners = "Owners";
     	while(scan.hasNext())
     	{
-    	    property = scan.nextLine().split(",");
-    	    properties.add(property);
-    	    
+    		
+    	property = scan.nextLine().split(",");
+    	if (property[0].equals("Owners")) {
+    	    continue;
+    	    } 
+    	    else {
+    	    	properties.add(property);
+    	}
+    	
     	    for(int i = 0; i < properties.size(); i++)
     	    {
     	        for(int j = 0; j < properties.get(i).length; j++)
