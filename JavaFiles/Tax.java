@@ -1,4 +1,5 @@
 //author:Calvin Power
+import java.io.IOException;
 import java.util.ArrayList;
 public class Tax {
     String[] locations = {"City", "Large town", "Small town", "Village"};
@@ -8,7 +9,7 @@ public class Tax {
     char PPR;
     int regDate;
     String location;
-    String yearsOwned;
+    String yearOwned;
 
     public Tax(int estvalue,char PPR,String yearsowned,String location) {
         this.estValue=estvalue;
@@ -42,13 +43,18 @@ public class Tax {
        return charge;
     }
 
-    public double Totaltax() {
+    public double Totaltax() throws IOException {
+        int yO = Integer.parseInt(yearOwned);
+        Paymentlist test = new Paymentlist();
         this.totaltax = LocationTax();
         totaltax = (totaltax + ((estValue/100)*MarketValueTax()));
         if (PPR == 'N'){
             totaltax = totaltax + 100;
         }
         totaltax = totaltax + 100;
+        if (test.getCurrentyear()!= yO ){
+            totaltax = totaltax * 1.07;
+        }
         return totaltax;
     }
 }

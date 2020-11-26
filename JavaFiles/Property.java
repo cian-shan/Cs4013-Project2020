@@ -1,4 +1,5 @@
 //author:Calvin Power
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Property{
@@ -20,7 +21,6 @@ public class Property{
         this.postcode = eircode;
         this.PPR = PPR2;
         this.locationCategory = location;
-
     }
     public void setAddress(String address){
        this.Address = address;
@@ -65,7 +65,7 @@ public class Property{
         count++;
         return taxlist.get(count-1).LocationTax();
     }
-    public double gettotaltax(){
+    public double gettotaltax() throws IOException {
         taxlist.add(new Tax(this.estValue,this.PPR,this.yearsowned,this.locationCategory));
         count++;
         return taxlist.get(count-1).Totaltax();

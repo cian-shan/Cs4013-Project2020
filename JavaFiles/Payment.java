@@ -12,13 +12,14 @@ public class Payment {
     String eircode;
     private ArrayList<Property> PropertyList = new ArrayList<Property>();
 
-    public Payment(String owner, String address, char status, double taxowed, String yeardue, String eircode) {
+    public Payment(String owner, String address, char status, double taxowed, String yeardue, String eircode,String Balance) {
         this.owner = owner;
         this.address = address;
         this.taxowed = taxowed;
         this.yeardue = yeardue;
         this.status = status;
         this.eircode = eircode;
+        this.Balance =Integer.parseInt(Balance);
     }
 
     public void passproplist(ArrayList<Property> list) {

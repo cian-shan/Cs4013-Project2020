@@ -43,16 +43,26 @@ public class Properties {
         propertylist.add(new Property(owners, estvalue, location, PPR, yearsowned, eircode, address));
         UserActions test = new UserActions();
         test.addproperty(owners, estvalue, location, PPR, yearsowned, eircode, address);
+        read();
     }
 
-    public void addpayment(String owner, String address, char status, double taxowed, String yeardue, String eircode) throws FileNotFoundException {
+    public void addpayment(String owner, String address, char status, double taxowed, String yeardue, String eircode,String balance) throws IOException {
         WriteFile write = new WriteFile();
-        write.WritePayments(owner, address, status, taxowed, yeardue, eircode);
+        write.WritePayments(owner, address, status, taxowed, yeardue, eircode,balance);
+        read();
     }
 
     public ArrayList<String> QueryTaxDueForAYear(String user,String YearDue) throws IOException {
         UserActions test = new UserActions();
         return  test.QueryTaxDueForAYear(user,YearDue);
+    }
+    public ArrayList<String> TaxDueForAProperty(String Address) throws IOException {
+        UserActions test = new UserActions();
+        return  test.TaxDueForAProperty(Address);
+    }
+    public int getCurrentyear() throws IOException{
+        Paymentlist test = new Paymentlist();
+        return test.getCurrentyear();
     }
 
 
@@ -64,6 +74,7 @@ public class Properties {
         ReadFile readFile = new ReadFile();
         propertylist = readFile.ReadProperties();
     }
+
 
     public void write(String owners, int estvalue, String location, char PPR, String yearsowned, String eircode, String address) throws FileNotFoundException {
         WriteFile write = new WriteFile();

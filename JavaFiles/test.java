@@ -1,16 +1,19 @@
 //author:Calvin Power
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class test {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
 
-      Propertys test = new Propertys();
-      test.addproperty("bob",268699,"City",'N',"2001-2020","VP3 35AD","37 Castlerockwoods Castleconnell limerick ireland");
-      test.addproperty("charlie",268699,"City",'N',"2001-2020","VP3 35AD","35 Castlerockwoods Castleconnell limerick ireland");
-      test.addproperty("charliedd",268699,"City",'N',"2001-2020","VP3 35AD","30 Castlerockwoods Castleconnell limerick ireland");
-      test.addpayment("calvin","37 Castlerockwoods Castleconnell limerick ireland",'D', test.gettotaltaxforaProperty("37 Castlerockwoods Castleconnell limerick ireland"),"2017","VP3 35AD");
+      Properties test = new Properties();
+      System.out.println(Arrays.deepToString(test.QueryTaxDueForAYear("calvin","2017").toArray()));
+      System.out.println(Arrays.deepToString(test.TaxDueForAProperty("37 Castlerockwoods Castleconnell limerick ireland").toArray()));
+      System.out.println(Arrays.deepToString(test.taxDueForaArea("VP3 35AD")));
+      System.out.println(Arrays.deepToString(test.getPropertysForAOwner("bob").toArray()));
 
+        System.out.println(test.getCurrentyear());
     }
 
 }
