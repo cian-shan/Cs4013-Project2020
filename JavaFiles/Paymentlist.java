@@ -1,5 +1,6 @@
 //author:Calvin Power
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Paymentlist {
@@ -8,10 +9,9 @@ public class Paymentlist {
     private ArrayList<Property> PropertyList = new ArrayList<Property>();
     private Payment payment;
 
-    public Paymentlist(ArrayList<Property> list) {
-        read();//fill paymentlist
-        this.PropertyList = list;
-        paymentlist = read();
+    public Paymentlist() throws IOException {
+        readprop();
+        readpayment();
     }
     public void addpayment(String owner,String address,char status,double taxowed,String yeardue,String eircode) throws FileNotFoundException {
         paymentlist.add(new Payment(owner,address,status,taxowed,yeardue,eircode));
@@ -44,15 +44,31 @@ public class Paymentlist {
         return taxDue;
     }
 
-    public ArrayList<Payment> read() {
-        return null;
+    public ArrayList<String> QueryTaxDueForAYear(String user, String YearDue){
+        ArrayList<String> PropDue = new ArrayList<String>();
+       for (int i = 0; i < paymentlist.size();i++){
+           if (paymentlist.get(i).getOwners().equals(user)){
+               if (paymentlist.get(i).getYeardue().equals(YearDue)){
+                   PropDue.add("Address + balance:"+ paymentlist.get(i).getAddress() + "," +paymentlist.get(i).getBalance());
+               }
+
+           }
+       }
+       return PropDue;
     }
+
+
     public void write(String owner, String address, char status, double taxowed, String yeardue, String eircode) throws FileNotFoundException {
         WriteFile write = new WriteFile();
         write.WritePayments(owner,address,status,taxowed,yeardue,eircode);
     }
-    public void refresh(){
-
+    public void readprop() throws IOException {
+        ReadFile readFile = new ReadFile();
+        PropertyList = readFile.ReadProperties();
+    }
+    public void readpayment() throws IOException {
+        ReadFile readFile = new ReadFile();
+        paymentlist = readFile.ReadPayment();
     }
 
 }

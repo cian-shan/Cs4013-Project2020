@@ -1,5 +1,6 @@
 //author:Calvin Power
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class UserActions  {
@@ -7,8 +8,9 @@ public class UserActions  {
     private Property prop;
     private ArrayList<Payment> paymentlist = new ArrayList<Payment>();
 
-    public UserActions(ArrayList<Property> list) {
-        this.proplist = list;
+    public UserActions() throws IOException {
+        readprop();
+        readpayment();
     }
     public void addproperty(String owners,int estvalue, String location,char PPR,String yearsowned,String eircode,String address) throws FileNotFoundException {
         proplist.add(new Property(owners,estvalue,location,PPR,yearsowned,eircode,address));
@@ -36,13 +38,24 @@ public class UserActions  {
         }
         return -1;
     }
-    public void paytax(int ammount,String Owner,String Address){
-        Paymentlist test = new Paymentlist(proplist);
+    public void paytax(int ammount,String Owner,String Address) throws IOException {
+        Paymentlist test = new Paymentlist();
         test.PayTax(ammount,Owner,Address);
     }
     public void write(String owners,int estvalue, String location,char PPR,String yearsowned,String eircode,String address) throws FileNotFoundException {
         WriteFile write = new WriteFile();
         write.WriteProperty(owners,estvalue,location,PPR,yearsowned,eircode,address);
     }
-
+    public void readprop() throws IOException {
+        ReadFile readFile = new ReadFile();
+        proplist = readFile.ReadProperties();
+    }
+    public void readpayment() throws IOException {
+        ReadFile readFile = new ReadFile();
+        paymentlist = readFile.ReadPayment();
+    }
+    public ArrayList<String> QueryTaxDueForAYear(String user,String YearDue) throws IOException {
+        Paymentlist test = new Paymentlist();
+        return test.QueryTaxDueForAYear(user,YearDue);
+    }
 }

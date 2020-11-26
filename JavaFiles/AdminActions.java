@@ -1,12 +1,12 @@
 //author:Calvin Power
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class AdminActions {
     private ArrayList<Property> list;
 
 
-    public AdminActions(ArrayList<Property> list2) {
-        this.list = list2;
+    public AdminActions() throws IOException { read();
     }
 
     public ArrayList<String> PropertyForAOwner(String owner) {
@@ -22,9 +22,13 @@ public class AdminActions {
         return address;
     }
 
-    public String[][] taxDueForaArea(String eircode) {
-        Paymentlist test = new Paymentlist(list);
+    public String[][] taxDueForaArea(String eircode) throws IOException {
+        Paymentlist test = new Paymentlist();
         return test.taxDueForaArea(eircode);
+    }
+    public void read() throws IOException {
+        ReadFile readFile = new ReadFile();
+        list = readFile.ReadProperties();
     }
 }
 
