@@ -8,7 +8,7 @@ public class WriteFile{
 	
 	public void WriteProperty(String owners,int estvalue, String location,char PPR,String yearsowned,String eircode,String address) throws FileNotFoundException {
 
-	String filename = "property.csv";
+	String filename = "properties.csv";
 					
 	FileOutputStream fos = new FileOutputStream(filename, true);
 	PrintWriter pw = new PrintWriter(fos);
@@ -20,7 +20,7 @@ public class WriteFile{
 	
 }
 	public void WritePayments(String owner, String address, char status, double taxowed, String yeardue, String eircode) throws FileNotFoundException {
-	GregorianCalendar date = (GregorianCalendar) GregorianCalendar.getInstance();
+
 	String filename = "payments.csv";
 					
 	FileOutputStream fos = new FileOutputStream(filename, true);

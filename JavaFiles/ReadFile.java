@@ -4,32 +4,44 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class ReadFile {
 
-    public static void main(String[] args) throws IOException {
+	public ArrayList<Property> readProperties() throws IOException {
 
+    	ArrayList<Property> propertylist = new ArrayList<Property>();
     	Scanner scan = new Scanner(new File("JavaFiles/Properties.csv"));
-    	ArrayList<String[]> properties = new ArrayList<String[]>();
     	String[] property = new String[2];
-    	String owners = "Owners";
     	while(scan.hasNext())
     	{
     		
     	property = scan.nextLine().split(",");
-    	if (property[0].equals("Owners")) {
+    	if (property[0].equals("Owner(s)")) {
     	    continue;
     	    } 
     	    else {
-    	    	properties.add(property);
-    	}
-    	
-    	    for(int i = 0; i < properties.size(); i++)
-    	    {
-    	        for(int j = 0; j < properties.get(i).length; j++)
-    	        {
-    	            System.out.print(properties.get(i)[j] + " ");
-    	        }
-    	        System.out.print("\n");
-    	    }
-    	    
+    	    	propertylist.add(new Property(property[0],Integer.parseInt(property[1]),property[2],property[3].charAt(0),property[4],property[5],property[6]));
+    	} 
+ 	    
         }
+		return propertylist;
     }
+	
+	public ArrayList<Payment> readPayments() throws IOException {
+
+    	ArrayList<Payment> paymentlist = new ArrayList<Payment>();
+    	Scanner scan = new Scanner(new File("JavaFiles/Payments.csv"));
+    	String[] payment = new String[2];
+    	while(scan.hasNext())
+    	{
+    		
+    	payment = scan.nextLine().split(",");
+    	if (payment[0].equals("Owner(s)")) {
+    	    continue;
+    	    } 
+    	    else {
+    	    	paymentlist.add(new Payment(payment[0],payment[1],payment[2].charAt(0),Double.parseDouble(payment[3]),payment[4],payment[5]));
+    	} 
+ 	    
+        }
+		return paymentlist;
+    }	
+	
 }
