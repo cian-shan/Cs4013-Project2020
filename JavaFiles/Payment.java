@@ -1,6 +1,9 @@
-//author:Calvin Power
-
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Payment {
     String owner;
@@ -26,12 +29,31 @@ public class Payment {
         this.PropertyList = list;
     }
 
-    public void paytax(int ammount) {
+    public void paytax(int ammount) throws IOException {
         this.Balance = taxowed - ammount;
         this.taxowed = Balance;
-        if (Balance == 0) {
+        if (Balance == 0){
             this.status = 'P';
+            
+        	String[] payment = new String[2];
+        	Scanner scan = new Scanner(new File("JavaFiles/Properties.csv"));
+        	while(scan.hasNext())
+        	{
+        		
+        	payment = scan.nextLine().split(",");
+        	if (payment[0].equals(owner)) {
+        		FileOutputStream fos = new FileOutputStream("Properties.csv");
+        		PrintWriter pw = new PrintWriter(fos);
+        	  
+        	    pw.print(owner  + "," + address + "," + taxowed + "," + yeardue + "," + 'P' + "," + eircode);
+        	    pw.flush();
+        	    pw.close();
+        	    } 
+        	    else {
+        	    	
+        	} 
         }
+       }
     }
 
 
