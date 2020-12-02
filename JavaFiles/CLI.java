@@ -19,7 +19,6 @@ public class CLI {
 		boolean more = true;
 		Properties properties = new Properties();
 		Paymentlist paymentlist = new Paymentlist();
-		UserActions userActions = new UserActions();
 		
 		while(more) {
 			
