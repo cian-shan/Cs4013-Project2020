@@ -33,37 +33,22 @@ public class CLI {
 					String command2 = scan.nextLine();
 	/*Property*/		if(command2.equals("1")) {
 						
-							System.out.println("Enter Property Details: owner(s), estvalue, location, PPR, yearsowned, eircode, address");
-							String line = scan.nextLine();
+						System.out.println("Enter Property Details: owner(s)/estvalue/location/PPR/yearsowned/eircode/address");
+						String line = scan.nextLine();
+						String[] property = line.split("/");
 						
-							StringTokenizer string = new StringTokenizer(line);
-							String owners = string.nextToken();
-							int estValue = Integer.parseInt(string.nextToken());
-							String location = string.nextToken();
-				        		char PPR = string.nextToken().charAt(0);
-				        		String yearsowned = string.nextToken();
-				        		String eircode = string.nextToken();
-				        		String address = string.nextToken();
-						
-				        		properties.addproperty(owners, estValue, location, PPR, yearsowned, eircode, address);
-				        		break;
+				        	properties.addproperty(property[0], Integer.parseInt(property[1]),property[2], property[3].charAt(0), property[4], property[5], property[6]);
+				        	break;
 				        	
 	/*Payment*/			}else if(command2.equals("2")) {
 						
 							System.out.println("Enter Payment Details: owner, address, status, taxowed, yeardue, eircode, balance" );
 							String line = scan.nextLine();
-						
-							StringTokenizer string = new StringTokenizer(line);
-							String owner = string.nextToken();
-							String address = string.nextToken();
-							char status = string.nextToken().charAt(0);
-							double taxowed = Double.parseDouble(string.nextToken());
-							String yeardue = string.nextToken();
-							String eircode = string.nextToken();
-							String balance = string.nextToken();
+							String[] payment = line.split("/");
 							
-							paymentlist.addpayment(owner, address, status, taxowed, yeardue, eircode, balance);
+							paymentlist.addpayment(payment[0], payment[1], payment[2].charAt(0), Double.parseDouble(payment[3]), payment[4], payment[5], payment[6]);
 							break;
+							
 					}
 					
 				//Show	
@@ -75,36 +60,31 @@ public class CLI {
 					if(command3.equals("1")) {
 						
 						System.out.println("Owner");
-						String line = scan.nextLine();
-						System.out.println("Properties for " + line + ": " + properties.getPropertysForAOwner(line) + " " + line + "'s taxes: " + properties.gettotaltaxforaowner(line));
+						String name = scan.nextLine();
+						System.out.println("Properties for " + name + ": " + properties.getPropertysForAOwner(name) + " " + name + "'s taxes: " + properties.gettotaltaxforaowner(name));
 						
 					}else if(command3.equals("2")) {
 						
 						System.out.println("Address");
-						String line = scan.nextLine();
-						System.out.println("Tax due for " + line + " " + properties.gettotaltaxforaProperty(line));
+						String address = scan.nextLine();
+						System.out.println("Tax due for " + address + " " + properties.gettotaltaxforaProperty(address));
 						
 					}else if(command3.equals("3")) {
 						
 						System.out.println("Eircode");
-						String line = scan.nextLine();
-						System.out.println("Tax due for " + line + ": " + properties.taxDueForaArea(line));
+						String eircode = scan.nextLine();
+						System.out.println("Tax due for " + eircode + ": " + properties.taxDueForaArea(eircode));
 						
 					}
 					
 				//Payment
 				case "3":
 					
-						System.out.println("Pay tax, Enter: Amount, Owner name, Address");
+					System.out.println("Pay tax, Enter: Amount/Owner name/Address");
 						String pay = scan.nextLine();
-						
-						StringTokenizer string = new StringTokenizer(pay);
-						int ammount = Integer.parseInt(string.nextToken());
-						String owner = string.nextToken();
-						String address = string.nextToken();
-						
-						paymentlist.PayTax(ammount, owner, address);
-						
+						String[] payTax = pay.split("/");
+						paymentlist.PayTax(Integer.parseInt(payTax[0]), payTax[1], payTax[2]);	
+					
 				case "4":	
 						more = false;
 					
