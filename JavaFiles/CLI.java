@@ -41,13 +41,13 @@ public class CLI {
 							String owners = string.nextToken();
 							int estValue = Integer.parseInt(string.nextToken());
 							String location = string.nextToken();
-				        	char PPR = string.nextToken().charAt(0);
-				        	String yearsowned = string.nextToken();
-				        	String eircode = string.nextToken();
-				        	String address = string.nextToken();
+				        		char PPR = string.nextToken().charAt(0);
+				        		String yearsowned = string.nextToken();
+				        		String eircode = string.nextToken();
+				        		String address = string.nextToken();
 						
-				        	properties.addproperty(owners, estValue, location, PPR, yearsowned, eircode, address);
-				        	break;
+				        		properties.addproperty(owners, estValue, location, PPR, yearsowned, eircode, address);
+				        		break;
 				        	
 	/*Payment*/			}else if(command2.equals("2")) {
 						
