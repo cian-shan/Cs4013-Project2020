@@ -23,7 +23,7 @@ public class CLI {
 		
 		while(more) {
 			
-			System.out.println("(1.)Add (2.)Show (3.)Quit");
+			System.out.println("(1.)Add (2.)Show (3.)Payment (4.)Quit")
 			String command = scan.nextLine().toUpperCase();
 			
 			switch(command){
@@ -93,9 +93,20 @@ public class CLI {
 						
 					}
 					
-				//Quit
+				//Payment
 				case "3":
 					
+						System.out.println("Pay tax, Enter: Amount, Owner name, Address");
+						String pay = scan.nextLine();
+						
+						StringTokenizer string = new StringTokenizer(pay);
+						int ammount = Integer.parseInt(string.nextToken());
+						String owner = string.nextToken();
+						String address = string.nextToken();
+						
+						paymentlist.PayTax(ammount, owner, address);
+						
+				case "4":	
 						more = false;
 					
 					
