@@ -83,7 +83,7 @@ public class CLI {
 						
 						System.out.println("Address");
 						String line = scan.nextLine();
-						System.out.println(userActions.gettotaltaxforaProperty(line));
+						System.out.println(properties.gettotaltaxforaProperty(line));
 						
 					}else if(command3.equals("3")) {
 						
