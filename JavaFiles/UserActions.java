@@ -32,18 +32,39 @@ public class UserActions {
     }
 
     public double gettotaltaxforaProperty(String address) throws IOException {
-        for (int i = 0; i < proplist.size(); i++) {
-            String a = proplist.get(i).getAddress();
-            if (a.equals(address)) {
-                return proplist.get(i).gettotaltax();
-            }
-        }
-        return -1;
+        Paymentlist test = new Paymentlist();
+        return test.gettotaltaxforaProperty(address);
+    }
+
+    public double[] gettotaltaxforaowner2(String owner) throws IOException  {
+        Paymentlist test = new Paymentlist();
+        return test.gettotaltaxforaowner2(owner);
     }
 
     public void paytax(int ammount, String Owner, String Address) throws IOException {
         Paymentlist test = new Paymentlist();
         test.PayTax(ammount, Owner, Address);
+    }
+
+    public ArrayList<String> QueryTaxDueForAYear(String user, String YearDue) throws IOException {
+        Paymentlist test = new Paymentlist();
+        return test.QueryTaxDueForAYear(user, YearDue);
+    }
+
+    public ArrayList<String> TaxDueForAProperty(String Address) throws IOException {
+        Paymentlist test = new Paymentlist();
+        return test.TaxDueForAProperty(Address);
+
+    }
+
+    public double[] gettotaltaxforaProperty2(String address)throws IOException {
+        Paymentlist test = new Paymentlist();
+        return  test.gettotaltaxforaProperty2(address);
+    }
+
+    public double gettotaltaxforaowner(String owner) throws IOException {
+        Paymentlist test = new Paymentlist();
+        return test.gettotaltaxforaowner(owner);
     }
 
     public void write(String owners, int estvalue, String location, char PPR, String yearsowned, String eircode, String address) throws FileNotFoundException {
@@ -61,14 +82,4 @@ public class UserActions {
         paymentlist = readFile.ReadPayment();
     }
 
-    public ArrayList<String> QueryTaxDueForAYear(String user, String YearDue) throws IOException {
-        Paymentlist test = new Paymentlist();
-        return test.QueryTaxDueForAYear(user, YearDue);
-    }
-
-    public ArrayList<String> TaxDueForAProperty(String Address) throws IOException {
-        Paymentlist test = new Paymentlist();
-        return test.TaxDueForAProperty(Address);
-
-    }
 }

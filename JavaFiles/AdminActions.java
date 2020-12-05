@@ -26,6 +26,15 @@ public class AdminActions {
         Paymentlist test = new Paymentlist();
         return test.taxDueForaArea(eircode);
     }
+    public ArrayList<String>  gettotaltaxdataforaOwner(String Owner) throws IOException{
+        Paymentlist test = new Paymentlist();
+        return test.gettotaltaxdataforaOwner(Owner);
+    }
+    public ArrayList<String>  gettotaltaxdataforaProperty(String address) throws IOException {
+        Paymentlist test = new Paymentlist();
+        return test.gettotaltaxdataforaProperty(address);
+    }
+
     public void read() throws IOException {
         ReadFile readFile = new ReadFile();
         list = readFile.ReadProperties();

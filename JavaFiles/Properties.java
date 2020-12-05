@@ -13,17 +13,36 @@ public class Properties {
     public Properties() throws IOException {
         read();// read then make propertylist = info
     }
-
     //User and Admins Options
-    public double gettotaltaxforaProperty(String address) throws IOException {
+    public double gettotaltaxforaPropertycurrentyear(String address) throws IOException {
         UserActions test = new UserActions();
         return test.gettotaltaxforaProperty(address);
     }
-
-    public double gettotaltaxforaowner(String owner) {
-        return 00;
+    // tax data
+    public ArrayList<String>  gettotaltaxdataforaOwner(String Owner) throws IOException{
+        AdminActions test = new AdminActions();
+        return test.gettotaltaxdataforaOwner(Owner);
+    }
+    //tax data
+    public ArrayList<String>  gettotaltaxdataforaProperty(String Address) throws IOException{
+        AdminActions test = new AdminActions();
+        return test.gettotaltaxdataforaProperty(Address);
     }
 
+    public double gettotaltaxforaownercurrentyear(String owner)throws IOException {
+        UserActions test = new UserActions();
+        return test.gettotaltaxforaowner(owner);
+    }
+   // all years tax owed
+    public double[] gettotaltaxforaProperty2(String address) throws IOException {
+        UserActions test = new UserActions();
+        return test.gettotaltaxforaProperty2(address);
+    }
+    // all years tax owed
+    public double[] gettotaltaxforaowner2(String owner)throws IOException  {
+        UserActions test = new UserActions();
+        return test.gettotaltaxforaowner2(owner);
+    }
     public ArrayList<String> getPropertysForAOwner(String owner) throws IOException {
         UserActions test = new UserActions();
         return test.PropertyForAOwner(owner);
@@ -33,6 +52,19 @@ public class Properties {
         AdminActions test = new AdminActions();
         return test.taxDueForaArea(eircode);
     }
+    public ArrayList<String> QueryTaxDueForAYear(String user,String YearDue) throws IOException {
+        UserActions test = new UserActions();
+        return  test.QueryTaxDueForAYear(user,YearDue);
+    }
+    public ArrayList<String> TaxDueForAProperty(String Address) throws IOException {
+        UserActions test = new UserActions();
+        return  test.TaxDueForAProperty(Address);
+    }
+    public int getCurrentyear() throws IOException{
+        Paymentlist test = new Paymentlist();
+        return test.getCurrentyear();
+    }
+
 
     public void paytax(int ammount, String Owner, String Address) throws IOException {
         UserActions test = new UserActions();
@@ -51,21 +83,6 @@ public class Properties {
         write.WritePayments(owner, address, status, taxowed, yeardue, eircode,balance);
         read();
     }
-
-    public ArrayList<String> QueryTaxDueForAYear(String user,String YearDue) throws IOException {
-        UserActions test = new UserActions();
-        return  test.QueryTaxDueForAYear(user,YearDue);
-    }
-    public ArrayList<String> TaxDueForAProperty(String Address) throws IOException {
-        UserActions test = new UserActions();
-        return  test.TaxDueForAProperty(Address);
-    }
-    public int getCurrentyear() throws IOException{
-        Paymentlist test = new Paymentlist();
-        return test.getCurrentyear();
-    }
-
-
 
     // System commands
 

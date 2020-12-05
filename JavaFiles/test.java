@@ -14,6 +14,8 @@ public class test {
       System.out.println(Arrays.deepToString(test.getPropertysForAOwner("bob").toArray()));
 
         System.out.println(test.getCurrentyear());
+        System.out.println(Arrays.deepToString(test.gettotaltaxdataforaOwner("calvin").toArray()));
+        System.out.println(Arrays.deepToString(test.gettotaltaxdataforaProperty("37 Castlerockwoods Castleconnell limerick ireland").toArray()));
     }
 
 }

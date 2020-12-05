@@ -53,9 +53,13 @@ public class Tax {
         }
         totaltax = totaltax + 100;
         if (test.getCurrentyear()!= yO ){
-            totaltax = totaltax * 1.07;
+            int difference = test.getCurrentyear() - yO;
+            for (int i = 0; i < difference; i++){
+            totaltax = totaltax * 1.07;}
         }
         return totaltax;
     }
+
+
 }
 
