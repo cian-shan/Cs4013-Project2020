@@ -24,7 +24,7 @@ public class Paymentlist {
 
     public int getCurrentyear() throws IOException {
         for (int i = 1; i < paymentlist.size(); i++) {
-            currentyear = Integer.parseInt((paymentlist.get(1)).getYeardue());
+            currentyear = Integer.parseInt((paymentlist.get(0)).getYeardue());
             if (paymentlist.get(i) != null) {
                 int temp = Integer.parseInt(paymentlist.get(i).getYeardue());
                 if (currentyear < temp) {
