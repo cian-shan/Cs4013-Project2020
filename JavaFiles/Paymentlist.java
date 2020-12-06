@@ -22,16 +22,12 @@ public class Paymentlist {
         write(owner, address, status, taxowed, yeardue, eircode, balance);
     }
 
-    public int getCurrentyear() throws IOException {
+      public int getCurrentyear() throws IOException {
+        currentyear = Integer.parseInt((paymentlist.get(0)).getYeardue());
         for (int i = 1; i < paymentlist.size(); i++) {
-            currentyear = Integer.parseInt((paymentlist.get(0)).getYeardue());
-            if (paymentlist.get(i) != null) {
                 int temp = Integer.parseInt(paymentlist.get(i).getYeardue());
                 if (currentyear < temp) {
                     currentyear = temp;
-                }
-            } else {
-                return currentyear;
             }
         }
         return currentyear;
