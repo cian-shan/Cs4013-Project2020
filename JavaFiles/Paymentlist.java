@@ -102,11 +102,12 @@ public class Paymentlist {
         }
 
 
-    public void PayTax(int ammount, String Owner, String Address) throws IOException {
+    public void PayTax(int ammount, String Owner, String Address,int year) throws IOException {
         for (int i = 0; i < paymentlist.size(); i++) {
             String a = paymentlist.get(i).getOwners();
             String b = paymentlist.get(i).getAddress();
-            if (b.equals(Address)) {
+            int yr = Integer.parseInt(paymentlist.get(i).yeardue);
+            if (b.equals(Address) && year == yr) {
                 paymentlist.get(i).paytax(ammount);
             }
         }

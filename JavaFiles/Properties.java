@@ -66,9 +66,9 @@ public class Properties {
     }
 
 
-    public void paytax(int ammount, String Owner, String Address) throws IOException {
+    public void paytax(int ammount, String Owner, String Address,int year) throws IOException {
         UserActions test = new UserActions();
-        test.paytax(ammount, Owner, Address);
+        test.paytax(ammount, Owner, Address,year);
     }
 
     public void addproperty(String owners, int estvalue, String location, char PPR, String yearsowned, String eircode, String address) throws IOException {

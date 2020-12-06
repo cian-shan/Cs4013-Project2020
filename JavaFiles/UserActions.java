@@ -41,9 +41,9 @@ public class UserActions {
         return test.gettotaltaxforaowner2(owner);
     }
 
-    public void paytax(int ammount, String Owner, String Address) throws IOException {
+    public void paytax(int ammount, String Owner, String Address, int year) throws IOException {
         Paymentlist test = new Paymentlist();
-        test.PayTax(ammount, Owner, Address);
+        test.PayTax(ammount, Owner, Address,year);
     }
 
     public ArrayList<String> QueryTaxDueForAYear(String user, String YearDue) throws IOException {
