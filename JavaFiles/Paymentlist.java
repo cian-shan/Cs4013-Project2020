@@ -113,16 +113,46 @@ public class Paymentlist {
         }
     }
     // remove nulls for clean output
-    public String[][] taxDueForaArea(String eircode) {
+    //tax due no para
+    public String[][] overduetaxDueForaArea() throws IOException {
+        String[][] taxDue = new String[paymentlist.size()][paymentlist.size()];
+        for (int i = 0; i < paymentlist.size(); i++) {
+            int yr = Integer.parseInt(paymentlist.get(i).getYeardue());
+            double b = paymentlist.get(i).getTaxowed();
+            String c = paymentlist.get(i).getOwners();
+            if (yr != getCurrentyear()) {
+                taxDue[0][i] = String.valueOf(b);
+                taxDue[1][i] = c;
+            }
+        }
+        return taxDue;
+    }
+    // tax due para year
+    public String[][] overduetaxDueForaArea(int year) throws IOException {
+        String[][] taxDue = new String[paymentlist.size()][paymentlist.size()];
+        for (int i = 0; i < paymentlist.size(); i++) {
+            int yr = Integer.parseInt(paymentlist.get(i).getYeardue());
+            double b = paymentlist.get(i).getTaxowed();
+            String c = paymentlist.get(i).getOwners();
+            if (yr == year && yr!= getCurrentyear()) {
+                taxDue[0][i] = String.valueOf(b);
+                taxDue[1][i] = c;
+            }
+        }
+        return taxDue;
+    }
+// tax due para year,eircode
+    public String[][] overduetaxDueForaArea(int year,String eircode) throws IOException {
         String[][] taxDue = new String[paymentlist.size()][paymentlist.size()];
         for (int i = 0; i < paymentlist.size(); i++) {
             String a = paymentlist.get(i).getEircode();
+            int yr = Integer.parseInt(paymentlist.get(i).getYeardue());
             a = a.substring(0, 3);
             double b = paymentlist.get(i).getTaxowed();
             String eircodeKey = eircode;
             eircodeKey = eircodeKey.substring(0, 3);
             String c = paymentlist.get(i).getOwners();
-            if (a.equals(eircodeKey)) {
+            if (a.equals(eircodeKey)&& yr == year && yr != getCurrentyear()) {
                 taxDue[0][i] = String.valueOf(b);
                 taxDue[1][i] = c;
             }

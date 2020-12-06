@@ -47,11 +47,18 @@ public class Properties {
         UserActions test = new UserActions();
         return test.PropertyForAOwner(owner);
     }
-
-    public String[][] taxDueForaArea(String eircode) throws IOException {
+    public String[][] overduetaxDueForaArea() throws IOException {
         AdminActions test = new AdminActions();
-        return test.taxDueForaArea(eircode);
+        return test.overduetaxDueForaArea();
     }
+    public String[][] overduetaxDueForaArea(int year) throws IOException {
+        AdminActions test = new AdminActions();
+        return test.overduetaxDueForaArea(year);
+    }
+    public String[][] overduetaxDueForaArea(int year,String eircode) throws IOException {
+        AdminActions test = new AdminActions();
+        return test.overduetaxDueForaArea(year,eircode); }
+
     public ArrayList<String> QueryTaxDueForAYear(String user,String YearDue) throws IOException {
         UserActions test = new UserActions();
         return  test.QueryTaxDueForAYear(user,YearDue);

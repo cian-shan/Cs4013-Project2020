@@ -22,9 +22,17 @@ public class AdminActions {
         return address;
     }
 
-    public String[][] taxDueForaArea(String eircode) throws IOException {
+    public String[][] overduetaxDueForaArea() throws IOException {
         Paymentlist test = new Paymentlist();
-        return test.taxDueForaArea(eircode);
+        return test.overduetaxDueForaArea();
+    }
+    public String[][] overduetaxDueForaArea(int year) throws IOException {
+        Paymentlist test = new Paymentlist();
+        return test.overduetaxDueForaArea(year);
+    }
+    public String[][] overduetaxDueForaArea(int year,String eircode) throws IOException {
+        Paymentlist test = new Paymentlist();
+        return test.overduetaxDueForaArea(year,eircode);
     }
     public ArrayList<String>  gettotaltaxdataforaOwner(String Owner) throws IOException{
         Paymentlist test = new Paymentlist();
