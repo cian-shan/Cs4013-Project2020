@@ -22,7 +22,7 @@ public class Paymentlist {
         write(owner, address, status, taxowed, yeardue, eircode, balance);
     }
 
-      public int getCurrentyear() throws IOException {
+    public int getCurrentyear() throws IOException {
         currentyear = Integer.parseInt((paymentlist.get(0)).getYeardue());
         for (int i = 1; i < paymentlist.size(); i++) {
                 int temp = Integer.parseInt(paymentlist.get(i).getYeardue());
@@ -154,6 +154,63 @@ public class Paymentlist {
             }
         }
         return taxDue;
+    }
+    public double totaltaxDueForaArea(String eircode) throws IOException {
+        double total= 0;
+        for (int i = 0; i < paymentlist.size(); i++) {
+            String a = paymentlist.get(i).getEircode();
+            int yr = Integer.parseInt(paymentlist.get(i).getYeardue());
+            a = a.substring(0, 3);
+            double b = paymentlist.get(i).getTaxowed();
+            String eircodeKey = eircode;
+            eircodeKey = eircodeKey.substring(0, 3);
+            String c = paymentlist.get(i).getOwners();
+            if (a.equals(eircodeKey) && yr == getCurrentyear()) {
+             total = total + paymentlist.get(i).getTaxowed();
+            }
+        }
+        return total;
+    }
+    public double averagetaxDueForaArea(String eircode) throws IOException {
+        double total= 0;
+        int count = 0;
+        for (int i = 0; i < paymentlist.size(); i++) {
+            String a = paymentlist.get(i).getEircode();
+            int yr = Integer.parseInt(paymentlist.get(i).getYeardue());
+            a = a.substring(0, 3);
+            double b = paymentlist.get(i).getTaxowed();
+            String eircodeKey = eircode;
+            eircodeKey = eircodeKey.substring(0, 3);
+            String c = paymentlist.get(i).getOwners();
+            if (a.equals(eircodeKey) && yr == getCurrentyear()) {
+                total = total + paymentlist.get(i).getTaxowed();
+                count++;
+            }
+        }
+        return total/count;
+    }
+    public String percentagetaxDueForaArea(String eircode) throws IOException {
+        int count= 0;
+        int paid = 0;
+        int due =0;
+        for (int i = 0; i < paymentlist.size(); i++) {
+            String a = paymentlist.get(i).getEircode();
+            int yr = Integer.parseInt(paymentlist.get(i).getYeardue());
+            a = a.substring(0, 3);
+            double b = paymentlist.get(i).getTaxowed();
+            String eircodeKey = eircode;
+            eircodeKey = eircodeKey.substring(0, 3);
+            String c = paymentlist.get(i).getOwners();
+            if (a.equals(eircodeKey) && yr == getCurrentyear() && paymentlist.get(i).status == 'P') {
+                paid++;
+                count++;
+            }
+            else {
+                due++;
+                count++;
+            }
+        }
+        return "paid ammount is :"+ paid + " percentage paid for this year :" + (paid/count)*100 + "%";
     }
 
     public ArrayList<String> TaxDueForAProperty(String Address) {

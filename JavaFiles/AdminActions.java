@@ -42,6 +42,19 @@ public class AdminActions {
         Paymentlist test = new Paymentlist();
         return test.gettotaltaxdataforaProperty(address);
     }
+    public double averagetaxDueForaArea(String eircode) throws IOException{
+        Paymentlist test = new Paymentlist();
+        return test.averagetaxDueForaArea(eircode);
+    }
+    public double totaltaxDueForaArea(String eircode) throws IOException{
+        Paymentlist test = new Paymentlist();
+        return test.totaltaxDueForaArea(eircode);
+    }
+    public String percentagetaxDueForaArea(String eircode) throws IOException{
+        Paymentlist test = new Paymentlist();
+        return test.percentagetaxDueForaArea(eircode);
+    }
+
 
     public void read() throws IOException {
         ReadFile readFile = new ReadFile();

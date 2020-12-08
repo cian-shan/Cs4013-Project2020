@@ -90,6 +90,18 @@ public class Properties {
         write.WritePayments(owner, address, status, taxowed, yeardue, eircode,balance);
         read();
     }
+    public double averagetaxDueForaArea(String eircode) throws IOException{
+        AdminActions test = new AdminActions();
+        return test.averagetaxDueForaArea(eircode);
+    }
+    public double totaltaxDueForaArea(String eircode) throws IOException{
+        AdminActions test = new AdminActions();
+        return test.totaltaxDueForaArea(eircode);
+    }
+    public String percentagetaxDueForaArea(String eircode) throws IOException{
+        AdminActions test = new AdminActions();
+        return test.percentagetaxDueForaArea(eircode);
+    }
 
     // System commands
 
