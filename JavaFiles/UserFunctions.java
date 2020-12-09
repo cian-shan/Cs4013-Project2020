@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * The type User functions.
+ */
 public class UserFunctions {
     private JPanel UserHome;
     private JLabel LabelUserFunctions;
@@ -14,6 +17,9 @@ public class UserFunctions {
     private JButton ButtonQuery;
     private JButton ButtonHome;
 
+    /**
+     * Instantiates a new User functions.
+     */
     public UserFunctions() {
         ButtonQuery.addActionListener(new ActionListener() {
             @Override

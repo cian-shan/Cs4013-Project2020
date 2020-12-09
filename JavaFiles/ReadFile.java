@@ -3,8 +3,18 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+/**
+ * The type Read file.
+ */
 public class ReadFile {
 
+    /**
+     * Read properties array list.
+     *
+     * @return the array list
+     * @throws IOException the io exception
+     */
     public ArrayList<Property> ReadProperties() throws IOException {
 
         ArrayList<Property> propertylist = new ArrayList<Property>();
@@ -25,6 +35,12 @@ public class ReadFile {
         return propertylist;
     }
 
+    /**
+     * Read payment array list.
+     *
+     * @return the array list
+     * @throws IOException the io exception
+     */
     public ArrayList<Payment> ReadPayment() throws IOException {
 
         ArrayList<Payment> paymentlist = new ArrayList<Payment>();
