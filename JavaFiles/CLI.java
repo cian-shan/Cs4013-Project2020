@@ -106,36 +106,52 @@ public class CLI {
 				System.out.println("Please Enter Password: (password is 1234)");
 				if(scan.nextLine() == "1234") {
 				System.out.println("Password Succesful, Running Admin Mode");
-				System.out.println("(1.)Property Tax Payment Data for a Property (2.)Property Tax Payment Data for a Property Owner (3.)All Overdue Property Tax for a Year (4.)Property Tax Statistics (5.)Quit");
+				System.out.println("(1.)Add Property and Payment Info (2.)Property Tax Payment Data for a Property (3.)Property Tax Payment Data for a Property Owner (4.)All Overdue Property Tax for a Year (5.)Property Tax Statistics (6.)Quit");
 				String command = scan.nextLine().toUpperCase();
 				
 				switch(command){
 				
 				case "1":
 					
+						System.out.println("Enter Property Details: owner(s)/estvalue/location/PPR/yearsowned/eircode/address");
+						String propertyLine = scan.nextLine();
+						String[] property = propertyLine.split("/");
+					
+			        	properties.addproperty(property[0], Integer.parseInt(property[1]),property[2], property[3].charAt(0), property[4], property[5], property[6]);
+			        	
+			        	System.out.println("Enter Payment Details: owner, address, status, taxowed, yeardue, eircode, balance" );
+						String payLine = scan.nextLine();
+						String[] payment = payLine.split("/");
+						
+						paymentlist.addpayment(payment[0], payment[1], payment[2].charAt(0), Double.parseDouble(payment[3]), payment[4], payment[5], payment[6]);
+						break;
+					
+				
+				case "2":
+					
 						System.out.println("Input Address");
 						System.out.println(properties.gettotaltaxdataforaProperty(scan.nextLine()));
 						break;
 						
-				case "2":
+				case "3":
 					
 						System.out.println("Input Owner name");
 						System.out.println(properties.gettotaltaxdataforaOwner(scan.nextLine()));
 						break;
 					
-				case "3":
+				case "4":
 					
 						
 						break;
 					
-				case "4":
+				case "5":
 					
 						System.out.println("Input Eircode");
 						String eircode = scan.nextLine();
 						System.out.println("Property Tax statistics for " + eircode + "// Total Tax Due: " + properties.totaltaxDueForaArea(eircode) + " // Average Tax Due: " + properties.averagetaxDueForaArea(eircode) + " // Percentage Tax Due: " + properties.percentagetaxDueForaArea(eircode));
 						break;
 					
-				case "5":
+				case "6":
 					more = false;
 				}
 				
