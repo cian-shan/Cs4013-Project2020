@@ -24,7 +24,7 @@ public class CLI {
 			System.out.println("(1.)User (2.)Admin");
 			String perms = scan.nextLine();
 
-			if(perms == "1") {
+			if(perms.equals("1")) {
 			
 			System.out.println("(1.)Add (2.)Show (3.)Payment (4.)Quit");
 			String command = scan.nextLine().toUpperCase();
@@ -101,7 +101,7 @@ public class CLI {
 						more = false;
 				}
 			
-			}else if(perms == "2") {
+			}else if(perms.equals("2")) {
 				
 				System.out.println("Please Enter Password: (password is 1234)");
 				if(scan.nextLine() == "1234") {
