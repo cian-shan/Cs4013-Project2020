@@ -8,7 +8,6 @@ public class CLI {
 
 	private Scanner scan;
 	
-	
 	public CLI() {
 		scan = new Scanner(System.in);
 	}
@@ -22,15 +21,23 @@ public class CLI {
 		
 		while(more) {
 			
-			System.out.println("(1.)Add (2.)Show (3.)Payment (4.)Quit")
+			System.out.println("(1.)User (2.)Admin");
+			String perms = scan.nextLine();
+			
+			if(perms == "1") {	
+			
+			System.out.println("(1.)Add (2.)Show (3.)Payment (4.)Quit");
 			String command = scan.nextLine().toUpperCase();
+			
 			
 			switch(command){
 			
 				//Add
+				case "Add":	
 				case "1":
 					System.out.println("(1.)Property (2.)Payment");
 					String command2 = scan.nextLine();
+					
 	/*Property*/		if(command2.equals("1")) {
 						
 						System.out.println("Enter Property Details: owner(s)/estvalue/location/PPR/yearsowned/eircode/address");
@@ -51,46 +58,90 @@ public class CLI {
 							
 					}
 					
-				//Show	
+				//Show
+				case"Show":
 				case "2":
 					
-					System.out.println("(1.)Owners Propertys + Tax  (2.)Tax for a Property  (3.)Tax Due for an Area");
+					System.out.println("(1.)Owners Properties + Owners Due Tax  (2.)Due and Overdue Tax for a Specific Property (3.)Tax Due for an Area and Overdue Tax for an Area");
 					String command3 = scan.nextLine();
 					
 					if(command3.equals("1")) {
-						
-						System.out.println("Owner");
+						//Owners Properties + Tax 
+						System.out.println("Input Owner's name");
 						String name = scan.nextLine();
-						System.out.println("Properties for " + name + ": " + properties.getPropertysForAOwner(name) + " " + name + "'s taxes: " + properties.gettotaltaxforaowner(name));
+						System.out.println("Properties for " + name + ": " + properties.getPropertysForAOwner(name) + " || " + name + "'s taxes: " + properties.gettotaltaxdataforaOwner(name));
 						
 					}else if(command3.equals("2")) {
-						
-						System.out.println("Address");
+						//Tax for a Property
+						System.out.println("Input Address");
 						String address = scan.nextLine();
-						System.out.println("Tax due for " + address + " " + properties.gettotaltaxforaProperty(address));
+						System.out.println("Tax due for " + address + " " + properties.gettotaltaxdataforaProperty(address));
+						
 						
 					}else if(command3.equals("3")) {
-						
-						System.out.println("Eircode");
+						//tax due for an area
+						System.out.println("Input Eircode/Year");
 						String eircode = scan.nextLine();
-						System.out.println("Tax due for " + eircode + ": " + properties.taxDueForaArea(eircode));
+						String[] area = eircode.split("/");
+						System.out.println("Tax due for " + eircode + ": " + properties.totaltaxDueForaArea(area[0]) + "/ Overdue tax for" + eircode + ": " + paymentlist.overduetaxDueForaArea(Integer.parseInt(area[0]), area[1]));
 						
 					}
 					
 				//Payment
+				case "Payment":
 				case "3":
 					
 					System.out.println("Pay tax, Enter: Amount/Owner name/Address");
 						String pay = scan.nextLine();
 						String[] payTax = pay.split("/");
-						paymentlist.PayTax(Integer.parseInt(payTax[0]), payTax[1], payTax[2]);	
-					
+						paymentlist.PayTax(Integer.parseInt(payTax[0]), payTax[1], payTax[2], 0);
+						
+				case"Quit":	
 				case "4":	
 						more = false;
-					
-					
-		}
+				}
 			
+			}else if(perms == "2") {
+				
+				System.out.println("Please Enter Password: (password is 1234)");
+				if(scan.nextLine() == "1234") {
+				System.out.println("Password Succesful, Running Admin Mode");
+				System.out.println("(1.)Property Tax Payment Data for a Property (2.)Property Tax Payment Data for a Property Owner (3.)All Overdue Property Tax for a Year (4.)Property Tax Statistics (5.)Quit");
+				String command = scan.nextLine().toUpperCase();
+				
+				switch(command){
+				
+				case "1":
+					
+						System.out.println("Input Address");
+						System.out.println(properties.gettotaltaxdataforaProperty(scan.nextLine()));
+						break;
+						
+				case "2":
+					
+						System.out.println("Input Owner name");
+						System.out.println(properties.gettotaltaxdataforaOwner(scan.nextLine()));
+						break;
+					
+				case "3":
+					
+						
+						break;
+					
+				case "4":
+					
+						System.out.println("Input Eircode");
+						String eircode = scan.nextLine();
+						System.out.println("Property Tax statistics for " + eircode + "// Total Tax Due: " + properties.totaltaxDueForaArea(eircode) + " // Average Tax Due: " + properties.averagetaxDueForaArea(eircode) + " // Percentage Tax Due: " + properties.percentagetaxDueForaArea(eircode));
+						break;
+					
+				case "5":
+					more = false;
+				}
+				
+			}	
 		}
 	}
 }
+}
+
