@@ -113,6 +113,9 @@ public class CLI {
 				
 				case "1":
 					
+					boolean allow = true;
+					while(allow) {
+					
 						System.out.println("Enter Property Details: owner(s)/estvalue/location/PPR/yearsowned/eircode/address");
 						String propertyLine = scan.nextLine();
 						String[] property = propertyLine.split("/");
@@ -124,7 +127,12 @@ public class CLI {
 						String[] payment = payLine.split("/");
 						
 						paymentlist.addpayment(payment[0], payment[1], payment[2].charAt(0), Double.parseDouble(payment[3]), payment[4], payment[5], payment[6]);
-						break;
+					
+						System.out.println("(1.)Add another Property + Payment info  (2.) Return to Admin menu");
+						if(scan.nextLine().equals("2")) {
+							break;
+						}
+					}
 					
 				
 				case "2":
