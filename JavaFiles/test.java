@@ -1,7 +1,11 @@
 //author:Calvin Power
 
 import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  * The type Test.
@@ -13,16 +17,20 @@ public class test {
      * @param args the input arguments
      * @throws IOException the io exception
      */
-    public static void main(String[] args) throws IOException {
 
-      Properties test = new Properties();
-      System.out.println(Arrays.deepToString(test.QueryTaxDueForAYear("calvin","2017").toArray()));
-      System.out.println(Arrays.deepToString(test.TaxDueForAProperty("37 Castlerockwoods Castleconnell limerick ireland").toArray()));
-      System.out.println(Arrays.deepToString(test.getPropertysForAOwner("bob").toArray()));
+     public static void main(String[] args) throws IOException {
 
-        System.out.println(test.getCurrentyear());
-        System.out.println(Arrays.deepToString(test.gettotaltaxdataforaOwner("calvin").toArray()));
-        System.out.println(Arrays.deepToString(test.gettotaltaxdataforaProperty("37 Castlerockwoods Castleconnell limerick ireland").toArray()));
-    }
+                CLI cli = new CLI();
+                Scanner scan = new Scanner(System.in);
+                System.out.println("Enter run");
+                String a = scan.nextLine();
 
-}
+                if(a.equals("run") || a.equals("Run")) {
+                    cli.run();
+                }
+            }
+        }
+
+
+
+

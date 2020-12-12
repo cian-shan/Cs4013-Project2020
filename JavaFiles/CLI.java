@@ -23,8 +23,8 @@ public class CLI {
 			
 			System.out.println("(1.)User (2.)Admin");
 			String perms = scan.nextLine();
-			
-			if(perms == "1") {	
+
+			if(perms == "1") {
 			
 			System.out.println("(1.)Add (2.)Show (3.)Payment (4.)Quit");
 			String command = scan.nextLine().toUpperCase();
