@@ -2,7 +2,15 @@
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
+import java.util.List;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import com.opencsv.*;
+import com.opencsv.exceptions.CsvException;
 
 /**
  * The type Read file.
@@ -61,4 +69,51 @@ public class ReadFile {
         return paymentlist;
     }
 
+    public void RefreshTax() throws IOException, CsvException {
+        Scanner scan = new Scanner(new File("Payments.csv"));
+        String[] payment = new String[2];     
+        while(scan.hasNext())
+        {
+
+            payment = scan.nextLine().split(",");
+                CSVReader reader = new CSVReader(new FileReader("Payments.csv"));
+                List<String[]> csvBody = reader.readAll();
+                csvBody.get(Integer.parseInt(payment[7]))[4]=Arrays.toString(Paymentlist.gettotaltaxforaProperty2(payment[5]));
+                reader.close();
+
+                CSVWriter writer = new CSVWriter(new FileWriter("Payments.csv", true));
+                writer.writeAll(csvBody);
+                writer.flush();
+                writer.close();
+
+        }
+
+    }
+    
+    public void RefreshStatus() throws IOException, CsvException {
+        Scanner scan = new Scanner(new File("Payments.csv"));
+        String[] payment = new String[2];     
+        while(scan.hasNext())
+        {
+
+            payment = scan.nextLine().split(",");
+            if (payment[6].equals("0")) {
+                CSVReader reader = new CSVReader(new FileReader("Payments.csv"));
+                List<String[]> csvBody = reader.readAll();
+                csvBody.get(Integer.parseInt(payment[7]))[2]="P";
+                reader.close();
+
+                CSVWriter writer = new CSVWriter(new FileWriter("Payments.csv", true));
+                writer.writeAll(csvBody);
+                writer.flush();
+                writer.close();
+            }
+            else {
+                continue;
+            }
+
+        }
+
+    }
+    
 }
