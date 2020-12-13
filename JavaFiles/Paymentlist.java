@@ -4,13 +4,15 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import com.opencsv.exceptions.CsvException;
+
 /**
  * The type Paymentlist.
  */
 public class Paymentlist {
 
     private int currentyear;
-    private ArrayList<Payment> paymentlist = new ArrayList<Payment>();
+    private static ArrayList<Payment> paymentlist = new ArrayList<Payment>();
     private ArrayList<Property> PropertyList = new ArrayList<Property>();
     private Payment payment;
 
@@ -120,7 +122,7 @@ public class Paymentlist {
      * @param address the address
      * @return the double [ ]
      */
-    public double[] gettotaltaxforaProperty2(String address) {
+    public static double[] gettotaltaxforaProperty2(String address) {
         double[] taxowedar = new double[paymentlist.size()];
         for (int i = 0; i < paymentlist.size(); i++) {
             String a = paymentlist.get(i).getAddress();
@@ -172,8 +174,9 @@ public class Paymentlist {
      * @param Address the address
      * @param year    the year
      * @throws IOException the io exception
+     * @throws CsvException 
      */
-    public void PayTax(int ammount, String Owner, String Address,int year) throws IOException {
+    public void PayTax(int ammount, String Owner, String Address,int year) throws IOException, CsvException {
         for (int i = 0; i < paymentlist.size(); i++) {
             String a = paymentlist.get(i).getOwners();
             String b = paymentlist.get(i).getAddress();
@@ -414,10 +417,13 @@ public class Paymentlist {
      * Refresh.
      *
      * @throws IOException the io exception
+     * @throws CsvException 
      */
-    public void refresh() throws IOException {
+    public void refresh() throws IOException, CsvException {
         ReadFile readFile = new ReadFile();
         readFile.ReadPayment();
         readFile.ReadProperties();
+        readFile.RefreshStatus();
+        readFile.RefreshTax();
     }
 }

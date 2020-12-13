@@ -1,5 +1,4 @@
-Owner(s),Address,Status,TaxOwed,YearDue,Eircode,Balance
-me,39woopstrert,D,355,,2000,lolol,226
-calvin,37 Castlerockwoods Castleconnell limerick ireland,D,226.86,2018,VP3 35AD,226
-calvin,37 Castlerockwoods Castleconnell limerick ireland,D,0,2016,VP3 35AD,226
-
+Owner(s),Address,Status,TaxOwed,YearDue,Eircode,Balance,Index
+me,39woopstrert,D,355,,2000,lolol,0
+calvin,37 Castlerockwoods Castleconnell limerick ireland,D,226.86,2018,VP3 35AD,226,1
+calvin,37 Castlerockwoods Castleconnell limerick ireland,D,0,2016,VP3 35AD,226,2

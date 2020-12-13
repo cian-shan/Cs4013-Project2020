@@ -2,10 +2,17 @@
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
+import com.opencsv.exceptions.CsvException;
 
 /**
  * The type Payment.
@@ -76,19 +83,38 @@ public class Payment {
      *
      * @param ammount the ammount
      * @throws IOException the io exception
+     * @throws CsvException 
      */
-    public void paytax(int ammount) throws IOException {
+    public void paytax(int ammount) throws IOException, CsvException {
         this.Balance = taxowed - ammount;
         this.taxowed = Balance;
+        
+        Scanner scan = new Scanner(new File("Payments.csv"));
+        String[] pay = new String[2];     
+        while(scan.hasNext())
+        {
+
+            pay = scan.nextLine().split(",");
+                CSVReader reader = new CSVReader(new FileReader("Payments.csv"));
+                List<String[]> csvBody = reader.readAll();
+                csvBody.get(Integer.parseInt(pay[7]))[6]=Double.toString(Balance);
+                reader.close();
+
+                CSVWriter writer = new CSVWriter(new FileWriter("Payments.csv", true));
+                writer.writeAll(csvBody);
+                writer.flush();
+                writer.close();
+        }
+        
         if (Balance == 0) {
             if (Balance == 0) {
                 this.status = 'P';
 
                 String[] payment = new String[2];
-                Scanner scan = new Scanner(new File("JavaFiles/Properties.csv"));
-                while (scan.hasNext()) {
+                Scanner scanner = new Scanner(new File("JavaFiles/Properties.csv"));
+                while (scanner.hasNext()) {
 
-                    payment = scan.nextLine().split(",");
+                    payment = scanner.nextLine().split(",");
                     if (payment[0].equals(owner)) {
                         FileOutputStream fos = new FileOutputStream("Properties.csv");
                         PrintWriter pw = new PrintWriter(fos);
