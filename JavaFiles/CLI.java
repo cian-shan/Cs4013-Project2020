@@ -104,7 +104,7 @@ public class CLI {
 			}else if(perms.equals("2")) {
 				
 				System.out.println("Please Enter Password: (password is 1234)");
-				if(scan.nextLine() == "1234") {
+				if(scan.nextLine().equals("1234")) {
 				System.out.println("Password Succesful, Running Admin Mode");
 				System.out.println("(1.)Add Property and Payment Info (2.)Property Tax Payment Data for a Property (3.)Property Tax Payment Data for a Property Owner (4.)All Overdue Property Tax for a Year (5.)Property Tax Statistics (6.)Quit");
 				String command = scan.nextLine().toUpperCase();
